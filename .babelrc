@@ -1,0 +1,7 @@
+{
+  "plugins": ["@emotion", ["@babel/plugin-proposal-class-properties"]],
+  "assumptions": {
+    "setPublicClassFields": false
+  },
+  "presets": ["@emotion/babel-preset-css-prop"]
+}
