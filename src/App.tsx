@@ -1,6 +1,6 @@
 import Form from './components/Form/Form';
 import styled from '@emotion/styled';
-import { fontFamily } from './Theme/index';
+import { fontFamily } from './theme/index';
 import UserList from './components/UserList/UserList';
 
 function App() {

@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { fontFamily, colors, fontSize } from '../../Theme';
+import { fontFamily, colors, fontSize } from '../../theme';
 
 export const InputStyle = styled.input`
   width: 300px;
