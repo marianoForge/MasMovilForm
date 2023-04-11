@@ -16,6 +16,7 @@ import {
 } from './FormStyles';
 import InputController from '../Input/Input';
 import { FormInputs } from './FormTypes';
+import { formValidationMessages } from '../../constants/validationMessages';
 
 const fields: Array<{ name: keyof FormInputs; label: string; type: string }> = [
   { name: 'firstName', label: 'First Name', type: 'text' },
@@ -33,13 +34,21 @@ const genderOptions = [
 ];
 
 const schema = yup.object().shape({
-  firstName: yup.string().required('First Name is required'),
-  lastName: yup.string().required('Last Name is required'),
-  email: yup.string().email('Invalid email').required('Email is required'),
-  dateOfBirth: yup.date().required('Date of Birth is required'),
-  telephoneNumber: yup.string().required('Telephone Number is required'),
-  address: yup.string().required('Address is required'),
-  gender: yup.string().required('Gender is required'),
+  firstName: yup.string().required(formValidationMessages.required).trim(),
+  lastName: yup.string().required(formValidationMessages.required).trim(),
+  email: yup
+    .string()
+    .email(formValidationMessages.email)
+    .required(formValidationMessages.required)
+    .trim(),
+  dateOfBirth: yup.date().required(formValidationMessages.required),
+  telephoneNumber: yup
+    .string()
+    .required(formValidationMessages.required)
+    .trim()
+    .min(9, formValidationMessages.telephoneNumberMin),
+  address: yup.string().required(formValidationMessages.required).trim(),
+  gender: yup.string().required(formValidationMessages.required).trim(),
 });
 
 const Form: React.FC = observer(() => {
@@ -78,6 +87,7 @@ const Form: React.FC = observer(() => {
   return (
     <>
       <FormContainer onSubmit={handleSubmit(onSubmit)}>
+        {/* Campos de texto */}
         {fields.map(({ name, label, type }) => (
           <InputContainer key={useId()}>
             <Label>{label}</Label>
@@ -90,7 +100,7 @@ const Form: React.FC = observer(() => {
           </InputContainer>
         ))}
 
-        {/* Gender select field */}
+        {/* Genero */}
         <InputContainer>
           <Label>Gender</Label>
           <InputController

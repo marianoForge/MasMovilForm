@@ -17,11 +17,11 @@ const Input = <T extends FieldValues>({
   error,
   options,
 }: InputProps<T>): JSX.Element => {
-  const renderInput = (field: any) => (
+  const renderInput = (field: FieldValues) => (
     <InputStyle {...field} type={type} id={String(name)} />
   );
 
-  const renderSelect = (field: any) => (
+  const renderSelect = (field: FieldValues) => (
     <Select {...field} id={String(name)}>
       <Option value="">Select {label}</Option>
       {options?.map((option) => (
